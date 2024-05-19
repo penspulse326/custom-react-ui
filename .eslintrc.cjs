@@ -4,14 +4,7 @@ module.exports = {
     es2021: true
   },
   plugins: ['react', 'prettier'],
-  extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:react/recommended',
-    'standard-with-typescript',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['airbnb', 'airbnb-typescript', 'airbnb/hooks', 'plugin:react/recommended', 'standard-with-typescript', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
   overrides: [
     {
       env: {
