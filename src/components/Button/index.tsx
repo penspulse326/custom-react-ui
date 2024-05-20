@@ -1,3 +1,4 @@
+import { useColor } from '../../hooks/useColor';
 import { StyledButton } from './styled';
 
 export interface ButtonPropsType {
@@ -8,12 +9,22 @@ export interface ButtonPropsType {
   themeColor?: string;
 }
 
-function Button({ children, isDisabled, onClick, ...props }: ButtonPropsType) {
+function Button({
+  children,
+  isDisabled,
+  themeColor,
+  onClick,
+  ...props
+}: ButtonPropsType) {
+  const { getColor } = useColor();
+  const btnColor = getColor(themeColor, isDisabled);
+
   return (
     <StyledButton
       type="button"
       disabled={isDisabled}
       onClick={onClick}
+      btnColor={btnColor}
       {...props}
     >
       <span>{children}</span>

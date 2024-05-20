@@ -1,14 +1,11 @@
 import { ThemeProvider } from 'styled-components';
 import Button from './components/Button';
-import defaultTheme from './theme.config';
-import useColor from './hooks/useColor';
+import defaultTheme from './theme';
 
 function App() {
-  const colors = useColor('#236085');
-
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Button variant="contained" isDisabled>
+      <Button variant="contained" themeColor="#000">
         按鈕
       </Button>
       <Button variant="outlined" isDisabled>

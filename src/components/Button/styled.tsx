@@ -1,18 +1,22 @@
 import styled, { css } from 'styled-components';
 import { ButtonPropsType } from '.';
 
-const containedStyle = css<ButtonPropsType>`
+interface PropsType extends ButtonPropsType {
+  btnColor: string;
+}
+
+const containedStyle = css<PropsType>`
   color: white;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ btnColor }) => btnColor};
 `;
 
-const outlinedStyle = css<ButtonPropsType>`
+const outlinedStyle = css<PropsType>`
   border: 1px solid ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.primary};
   background-color: white;
 `;
 
-const textStyle = css<ButtonPropsType>`
+const textStyle = css<PropsType>`
   color: ${({ theme }) => theme.colors.primary};
   background-color: transparent;
 `;
@@ -23,7 +27,7 @@ const variants = {
   text: textStyle
 };
 
-const StyledButton = styled.button<ButtonPropsType>`
+const StyledButton = styled.button<PropsType>`
   // base styles
   display: flex;
   justify-content: center;
