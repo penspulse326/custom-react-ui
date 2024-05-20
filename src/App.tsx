@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import Button from './components/Button';
 
 function App() {
-  return <>123</>;
+  return <Button>按鈕</Button>;
 }
 
 export default App;
