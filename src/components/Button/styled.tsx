@@ -12,12 +12,17 @@ const containedStyle = css<ButtonPropsType>`
   &:active {
     background-color: ${({ theme }) => theme.colors.primary[700]};
   }
+
+  &:disabled {
+    color: ${({ theme }) => theme.colors.primary[400]};
+    background-color: ${({ theme }) => theme.colors.primary[100]};
+  }
 `;
 
 const outlinedStyle = css<ButtonPropsType>`
   border: 1px solid ${({ theme }) => theme.colors.primary[500]};
   color: ${({ theme }) => theme.colors.primary[500]};
-  background-color: transparent;
+  background-color: white;
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.primary[600]};
@@ -25,6 +30,11 @@ const outlinedStyle = css<ButtonPropsType>`
 
   &:active {
     border: 1px solid ${({ theme }) => theme.colors.primary[700]};
+  }
+
+  &:disabled {
+    color: ${({ theme }) => theme.colors.primary[200]};
+    border: 1px solid ${({ theme }) => theme.colors.primary[200]};
   }
 `;
 
@@ -38,6 +48,10 @@ const textStyle = css<ButtonPropsType>`
 
   &:active {
     color: ${({ theme }) => theme.colors.primary[700]};
+  }
+
+  &:disabled {
+    color: ${({ theme }) => theme.colors.primary[200]};
   }
 `;
 
@@ -58,7 +72,7 @@ const StyledButton = styled.button<ButtonPropsType>`
   border-radius: 4px;
   outline: none;
 
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   transition: 0.3s;
 
