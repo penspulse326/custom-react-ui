@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', 'storybook'],
   extends: [
     'airbnb',
     'airbnb-typescript',
@@ -25,7 +25,6 @@ module.exports = {
     }
   ],
   parser: '@typescript-eslint/parser',
-
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'

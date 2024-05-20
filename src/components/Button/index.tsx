@@ -1,12 +1,13 @@
 import { StyledButton } from './styled';
 
-interface PropsType {
+export interface ButtonPropsType {
   children: React.ReactNode;
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
-function Button({ children }: PropsType) {
+function Button({ children, ...props }: ButtonPropsType) {
   return (
-    <StyledButton>
+    <StyledButton {...props}>
       <span>{children}</span>
     </StyledButton>
   );
