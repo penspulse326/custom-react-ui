@@ -5,7 +5,7 @@ import defaultTheme from './theme';
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Button variant="contained" themeColor="#000">
+      <Button variant="contained" isDisabled themeColor="#000">
         按鈕
       </Button>
       <Button variant="outlined" isDisabled>

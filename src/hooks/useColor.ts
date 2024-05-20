@@ -9,7 +9,7 @@ const checkColor = (color: string) => {
 export const useColor = () => {
   const theme = useTheme();
 
-  const getColor = (themeColor = 'primary', isDisabled = false) => {
+  const getColor = (themeColor: string, isDisabled: boolean) => {
     if (isDisabled) {
       return theme.colors.disable;
     }

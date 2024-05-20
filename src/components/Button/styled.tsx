@@ -11,13 +11,13 @@ const containedStyle = css<PropsType>`
 `;
 
 const outlinedStyle = css<PropsType>`
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ btnColor }) => btnColor};
+  color: ${({ btnColor }) => btnColor};
   background-color: white;
 `;
 
 const textStyle = css<PropsType>`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ btnColor }) => btnColor};
   background-color: transparent;
 `;
 
@@ -56,7 +56,6 @@ const StyledButton = styled.button<PropsType>`
     &:hover,
     &:active {
       filter: none;
-      opacity: 0.5;
       cursor: not-allowed;
     }
   }

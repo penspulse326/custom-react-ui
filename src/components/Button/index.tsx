@@ -3,16 +3,16 @@ import { StyledButton } from './styled';
 
 export interface ButtonPropsType {
   children: React.ReactNode;
-  isDisabled?: boolean;
-  onClick?: () => void;
   variant: 'contained' | 'outlined' | 'text';
+  isDisabled?: boolean;
   themeColor?: string;
+  onClick?: () => void;
 }
 
 function Button({
   children,
-  isDisabled,
-  themeColor,
+  isDisabled = false,
+  themeColor = 'primary',
   onClick,
   ...props
 }: ButtonPropsType) {
