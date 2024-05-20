@@ -27,13 +27,35 @@ const variants = {
   text: textStyle
 };
 
-const StyledButton = styled.button<PropsType>`
+export const StyledLoader = styled.span<PropsType>`
+  width: 16px;
+  aspect-ratio: 1;
+  --color: ${({ variant, btnColor }) =>
+    variant === 'contained' ? 'white' : btnColor};
+  --bg: no-repeat radial-gradient(farthest-side, var(--color) 92%, #0000);
+  background:
+    var(--bg) top,
+    var(--bg) left,
+    var(--bg) right,
+    var(--bg) bottom;
+  background-size: 4px 4px;
+  animation: spin 1s infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(0.5turn);
+    }
+  }
+`;
+
+export const StyledButton = styled.button<PropsType>`
   // base styles
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 4px;
 
-  padding: 4px 16px;
+  padding: 4px 12px;
   border: none;
   border-radius: 4px;
   outline: none;
@@ -64,5 +86,3 @@ const StyledButton = styled.button<PropsType>`
   ${({ variant }) =>
     variants[variant as keyof typeof variants] || variants.contained}
 `;
-
-export { StyledButton };

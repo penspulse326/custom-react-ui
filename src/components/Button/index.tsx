@@ -1,11 +1,11 @@
 import { useColor } from '../../hooks/useColor';
-import { StyledButton } from './styled';
+import { StyledButton, StyledLoader } from './styled';
 
 export interface ButtonPropsType {
-  children: React.ReactNode;
   variant: 'contained' | 'outlined' | 'text';
   isDisabled?: boolean;
   themeColor?: string;
+  children?: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -27,6 +27,7 @@ function Button({
       btnColor={btnColor}
       {...props}
     >
+      <StyledLoader btnColor={btnColor} {...props} />
       <span>{children}</span>
     </StyledButton>
   );
