@@ -1,7 +1,7 @@
 import { useColor } from '../../hooks/useColor';
 import { StyledButton, StyledLoader } from './styled';
 
-export interface ButtonPropsType {
+interface Props {
   variant: 'contained' | 'outlined' | 'text';
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -11,25 +11,29 @@ export interface ButtonPropsType {
 }
 
 function Button({
-  children,
+  variant,
   isDisabled = false,
   isLoading = false,
   themeColor = 'primary',
+  children,
   onClick,
   ...props
-}: ButtonPropsType) {
+}: Props) {
   const { getColor } = useColor();
-  const btnColor = getColor(themeColor, isDisabled);
+  const btnColor = getColor(themeColor, isLoading || isDisabled);
 
   return (
     <StyledButton
       type="button"
-      disabled={isDisabled}
+      disabled={isLoading || isDisabled}
       onClick={onClick}
-      btnColor={btnColor}
+      $variant={variant}
+      $color={btnColor}
       {...props}
     >
-      {isLoading && <StyledLoader btnColor={btnColor} {...props} />}
+      {isLoading && (
+        <StyledLoader $variant={variant} $color={btnColor} {...props} />
+      )}
       <span>{children}</span>
     </StyledButton>
   );

@@ -1,23 +1,23 @@
 import styled, { css } from 'styled-components';
-import { ButtonPropsType } from '.';
 
-interface PropsType extends ButtonPropsType {
-  btnColor: string;
+interface Props {
+  $color: string;
+  $variant: 'contained' | 'outlined' | 'text';
 }
 
-const containedStyle = css<PropsType>`
+const containedStyle = css<Props>`
   color: white;
-  background-color: ${({ btnColor }) => btnColor};
+  background-color: ${({ $color }) => $color};
 `;
 
-const outlinedStyle = css<PropsType>`
-  border: 1px solid ${({ btnColor }) => btnColor};
-  color: ${({ btnColor }) => btnColor};
+const outlinedStyle = css<Props>`
+  border: 1px solid ${({ $color }) => $color};
+  color: ${({ $color }) => $color};
   background-color: white;
 `;
 
-const textStyle = css<PropsType>`
-  color: ${({ btnColor }) => btnColor};
+const textStyle = css<Props>`
+  color: ${({ $color }) => $color};
   background-color: transparent;
 `;
 
@@ -27,31 +27,7 @@ const variants = {
   text: textStyle
 };
 
-export const StyledLoader = styled.span<PropsType>`
-  --color: ${({ variant, btnColor }) =>
-    variant === 'contained' ? 'white' : btnColor};
-  --bg: no-repeat radial-gradient(farthest-side, var(--color) 92%, #0000);
-
-  width: 16px;
-  aspect-ratio: 1;
-
-  background:
-    var(--bg) top,
-    var(--bg) left,
-    var(--bg) right,
-    var(--bg) bottom;
-  background-size: 4px 4px;
-
-  animation: spin 1s infinite;
-
-  @keyframes spin {
-    to {
-      transform: rotate(0.5turn);
-    }
-  }
-`;
-
-export const StyledButton = styled.button<PropsType>`
+export const StyledButton = styled.button<Props>`
   // base styles
   display: flex;
   justify-content: center;
@@ -72,7 +48,7 @@ export const StyledButton = styled.button<PropsType>`
   }
 
   &:active {
-    opacity: 0.7;
+    filter: opacity(0.7);
   }
 
   // disabled
@@ -86,6 +62,29 @@ export const StyledButton = styled.button<PropsType>`
   }
 
   // variants
-  ${({ variant }) =>
-    variants[variant as keyof typeof variants] || variants.contained}
+  ${({ $variant }) => variants[$variant] || variants.contained}
+`;
+
+export const StyledLoader = styled.span<Props>`
+  --color: ${({ $variant, $color }) =>
+    $variant === 'contained' ? 'white' : $color};
+  --bg: no-repeat radial-gradient(farthest-side, var(--color) 92%, #0000);
+
+  width: 16px;
+  aspect-ratio: 1;
+
+  background:
+    var(--bg) top,
+    var(--bg) left,
+    var(--bg) right,
+    var(--bg) bottom;
+  background-size: 4px 4px;
+
+  animation: spin 1s infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(0.5turn);
+    }
+  }
 `;
