@@ -77,8 +77,8 @@ const StyledButton = styled.button<ButtonPropsType>`
   transition: 0.3s;
 
   // variants
-  ${({ $variant }) =>
-    variants[$variant as keyof typeof variants] || variants.contained}
+  ${({ variant }) =>
+    variants[variant as keyof typeof variants] || variants.contained}
 `;
 
 export { StyledButton };

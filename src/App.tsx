@@ -5,13 +5,13 @@ import defaultTheme from './theme.config';
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Button $variant="contained" isDisabled>
+      <Button variant="contained" isDisabled>
         按鈕
       </Button>
-      <Button $variant="outlined" isDisabled>
+      <Button variant="outlined" isDisabled>
         按鈕
       </Button>
-      <Button $variant="text" isDisabled>
+      <Button variant="text" isDisabled>
         按鈕
       </Button>
     </ThemeProvider>
