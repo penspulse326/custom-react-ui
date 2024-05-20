@@ -1,7 +1,54 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ButtonPropsType } from '.';
 
+const containedStyle = css<ButtonPropsType>`
+  color: white;
+  background-color: ${({ theme }) => theme.colors.primary[500]};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary[600]};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors.primary[700]};
+  }
+`;
+
+const outlinedStyle = css<ButtonPropsType>`
+  border: 1px solid ${({ theme }) => theme.colors.primary[500]};
+  color: ${({ theme }) => theme.colors.primary[500]};
+  background-color: transparent;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.primary[600]};
+  }
+
+  &:active {
+    border: 1px solid ${({ theme }) => theme.colors.primary[700]};
+  }
+`;
+
+const textStyle = css<ButtonPropsType>`
+  color: ${({ theme }) => theme.colors.primary[500]};
+  background-color: transparent;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary[600]};
+  }
+
+  &:active {
+    color: ${({ theme }) => theme.colors.primary[700]};
+  }
+`;
+
+const variants = {
+  contained: containedStyle,
+  outlined: outlinedStyle,
+  text: textStyle
+};
+
 const StyledButton = styled.button<ButtonPropsType>`
+  // base styles
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,40 +60,11 @@ const StyledButton = styled.button<ButtonPropsType>`
 
   cursor: pointer;
 
-  transition:
-    color 0.2s,
-    background-color 0.2s,
-    border 0.2s,
-    opacity 0.2s ease-in-out;
+  transition: 0.3s;
 
-  &:hover {
-    opacity: 0.9;
-  }
-
-  &:active {
-    opacity: 0.7;
-  }
-
-  ${({ variant, theme }) =>
-    variants[variant as keyof typeof variants](theme) ||
-    variants.default(theme)}
+  // variants
+  ${({ $variant }) =>
+    variants[$variant as keyof typeof variants] || variants.contained}
 `;
-
-const variants = {
-  default: (theme) => ({
-    color: 'white',
-    backgroundColor: theme.colors.primary['500']
-  }),
-  outlined: (theme) => ({
-    color: theme.colors.primary['500'],
-    backgroundColor: 'transparent',
-    border: `1px solid ${theme.colors.primary['500']}`
-  }),
-  text: (theme) => ({
-    color: theme.colors.primary['500'],
-    backgroundColor: 'transparent',
-    border: 'none'
-  })
-};
 
 export { StyledButton };

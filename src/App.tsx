@@ -5,7 +5,7 @@ import defaultTheme from './theme.config';
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Button>按鈕</Button>
+      <Button $variant="contained">按鈕</Button>
     </ThemeProvider>
   );
 }
