@@ -27,25 +27,26 @@ const StyledButton = styled.button<ButtonPropsType>`
     opacity: 0.7;
   }
 
-  ${({ variant }) =>
-    variants[variant as keyof typeof variants] || variants.default}
+  ${({ variant, theme }) =>
+    variants[variant as keyof typeof variants](theme) ||
+    variants.default(theme)}
 `;
 
 const variants = {
-  default: {
+  default: (theme) => ({
     color: 'white',
-    backgroundColor: '#0052cc'
-  },
-  outlined: {
-    color: '#0052cc',
+    backgroundColor: theme.colors.primary['500']
+  }),
+  outlined: (theme) => ({
+    color: theme.colors.primary['500'],
     backgroundColor: 'transparent',
-    border: '1px solid #0052cc'
-  },
-  text: {
-    color: '#0052cc',
+    border: `1px solid ${theme.colors.primary['500']}`
+  }),
+  text: (theme) => ({
+    color: theme.colors.primary['500'],
     backgroundColor: 'transparent',
     border: 'none'
-  }
+  })
 };
 
 export { StyledButton };
