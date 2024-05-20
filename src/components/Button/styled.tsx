@@ -28,17 +28,20 @@ const variants = {
 };
 
 export const StyledLoader = styled.span<PropsType>`
-  width: 16px;
-  aspect-ratio: 1;
   --color: ${({ variant, btnColor }) =>
     variant === 'contained' ? 'white' : btnColor};
   --bg: no-repeat radial-gradient(farthest-side, var(--color) 92%, #0000);
+
+  width: 16px;
+  aspect-ratio: 1;
+
   background:
     var(--bg) top,
     var(--bg) left,
     var(--bg) right,
     var(--bg) bottom;
   background-size: 4px 4px;
+
   animation: spin 1s infinite;
 
   @keyframes spin {
