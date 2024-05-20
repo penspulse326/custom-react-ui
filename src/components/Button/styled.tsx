@@ -3,56 +3,18 @@ import { ButtonPropsType } from '.';
 
 const containedStyle = css<ButtonPropsType>`
   color: white;
-  background-color: ${({ theme }) => theme.colors.primary[500]};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primary[600]};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors.primary[700]};
-  }
-
-  &:disabled {
-    color: ${({ theme }) => theme.colors.primary[400]};
-    background-color: ${({ theme }) => theme.colors.primary[100]};
-  }
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 const outlinedStyle = css<ButtonPropsType>`
-  border: 1px solid ${({ theme }) => theme.colors.primary[500]};
-  color: ${({ theme }) => theme.colors.primary[500]};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
   background-color: white;
-
-  &:hover {
-    border: 1px solid ${({ theme }) => theme.colors.primary[600]};
-  }
-
-  &:active {
-    border: 1px solid ${({ theme }) => theme.colors.primary[700]};
-  }
-
-  &:disabled {
-    color: ${({ theme }) => theme.colors.primary[200]};
-    border: 1px solid ${({ theme }) => theme.colors.primary[200]};
-  }
 `;
 
 const textStyle = css<ButtonPropsType>`
-  color: ${({ theme }) => theme.colors.primary[500]};
+  color: ${({ theme }) => theme.colors.primary};
   background-color: transparent;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.primary[600]};
-  }
-
-  &:active {
-    color: ${({ theme }) => theme.colors.primary[700]};
-  }
-
-  &:disabled {
-    color: ${({ theme }) => theme.colors.primary[200]};
-  }
 `;
 
 const variants = {
@@ -72,9 +34,28 @@ const StyledButton = styled.button<ButtonPropsType>`
   border-radius: 4px;
   outline: none;
 
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: 'pointer';
 
   transition: 0.3s;
+
+  &:hover {
+    filter: saturate(1.2) contrast(1.2);
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+
+  // disabled
+  &:disabled {
+    &,
+    &:hover,
+    &:active {
+      filter: none;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
 
   // variants
   ${({ variant }) =>
