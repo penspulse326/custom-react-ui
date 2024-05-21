@@ -18,12 +18,8 @@ jobs:
       url: ${{ steps.build-publish.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
       - id: build-publish
-      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
         with:
-          path: storybook-static # default: dist/storybook
-          checkout: false # default: true
+          build_command: npm run build-storybook
+          path: storybook-static
