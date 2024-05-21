@@ -47,11 +47,11 @@ export const StyledButton = styled.button<Props>`
   transition: 0.3s;
 
   &:hover {
-    filter: saturate(1.2) contrast(1.2);
+    filter: saturate(2);
   }
 
   &:active {
-    filter: opacity(0.7);
+    filter: brightness(0.8);
   }
 
   // disabled

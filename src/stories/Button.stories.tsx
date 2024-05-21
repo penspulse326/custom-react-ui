@@ -33,6 +33,16 @@ const meta = {
         true: <Icon />,
         false: null
       }
+    },
+    onClick: {
+      table: {
+        disable: true
+      }
+    },
+    className: {
+      table: {
+        disable: true
+      }
     }
   }
 } satisfies Meta<typeof Button>;
