@@ -1,12 +1,15 @@
-import { Label, StyledButton, Thumb } from './styled';
+import { useState } from 'react';
+import { StyledButton, Label, Thumb } from './styled';
 
 export interface SwitchProps {}
 
 const Switch = () => {
+  const [checked, setChecked] = useState(false);
+
   return (
-    <StyledButton>
-      <Thumb />
-      <Label>開關</Label>
+    <StyledButton type="button" onClick={() => setChecked(!checked)}>
+      <Thumb $isChecked={checked} />
+      <Label $isChecked={checked}>開關</Label>
     </StyledButton>
   );
 };
