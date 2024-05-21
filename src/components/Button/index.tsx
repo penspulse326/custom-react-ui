@@ -1,7 +1,7 @@
 import { useColor } from '../../hooks/useColor';
 import { StyledButton, StyledLoader } from './styled';
 
-interface ButtonProps {
+export interface ButtonProps {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
