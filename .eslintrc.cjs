@@ -3,8 +3,16 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  plugins: ['react', 'prettier'],
-  extends: ['airbnb', 'airbnb-typescript', 'airbnb/hooks', 'plugin:react/recommended', 'standard-with-typescript', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
+  plugins: ['react', 'prettier', 'storybook'],
+  extends: [
+    'airbnb',
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'standard-with-typescript',
+    'plugin:prettier/recommended',
+    'plugin:storybook/recommended'
+  ],
   overrides: [
     {
       env: {
@@ -16,9 +24,12 @@ module.exports = {
       }
     }
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  rules: {}
-}
+  rules: {
+    'no-console': 'warn'
+  }
+};
