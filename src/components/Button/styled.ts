@@ -68,7 +68,7 @@ export const StyledButton = styled.button<Props>`
   ${({ $variant }) => variants[$variant] || variants.contained}
 `;
 
-export const StyledLoader = styled.span<Props>`
+export const Loader = styled.span<Props>`
   --color: ${({ $variant, $color }) =>
     $variant === 'contained' ? 'white' : $color};
   --bg: no-repeat radial-gradient(farthest-side, var(--color) 92%, #0000);

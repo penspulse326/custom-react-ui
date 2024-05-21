@@ -1,5 +1,5 @@
 import { useColor } from '../../hooks/useColor';
-import { StyledButton, StyledLoader } from './styled';
+import { StyledButton, Loader } from './styled';
 
 export interface ButtonProps {
   /**
@@ -69,7 +69,7 @@ function Button({
       $color={btnColor}
       {...props}
     >
-      {isLoading && <StyledLoader $variant={variant} $color={btnColor} />}
+      {isLoading && <Loader $variant={variant} $color={btnColor} />}
       {startIcon}
       <span>{children}</span>
       {endIcon}

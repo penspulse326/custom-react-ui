@@ -1,17 +1,13 @@
 import { ThemeProvider } from 'styled-components';
-import Button from './components/Button';
 import defaultTheme from './theme';
+import Switch from './components/Switch';
+import Button from './components/Button';
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Button variant="contained" themeColor="#cc4646" isLoading>
-        按鈕
-      </Button>
-      <Button variant="outlined">按鈕</Button>
-      <Button variant="text" isDisabled>
-        按鈕
-      </Button>
+      <Button variant="contained">Button</Button>
+      <Switch />
     </ThemeProvider>
   );
 }
