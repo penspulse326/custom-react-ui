@@ -1,89 +1,71 @@
-import { Meta, StoryFn } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
-import defaultTheme from '../theme';
-import Button, { ButtonProps } from '../components/Button';
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import Button from '../components/Button';
+import Icon from './assets/Icon';
 
-const meta: Meta = {
+const meta = {
   title: '輸入元件/Button',
   component: Button,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered'
   },
+  tags: ['autodocs'],
+  args: { onClick: fn() },
   argTypes: {
     themeColor: {
-      control: {
-        type: 'select',
-        options: ['primary', 'secondary', 'success', 'error']
-      }
-    },
-    variant: {
-      control: {
-        type: 'select',
-        options: ['contained', 'outlined', 'text']
-      }
+      control: 'color',
+      options: ['primary', 'warning', 'disable']
     },
     startIcon: {
-      control: 'text'
+      control: {
+        type: 'boolean'
+      },
+      mapping: {
+        true: <Icon />,
+        false: null
+      }
     },
     endIcon: {
-      control: 'text'
-    },
-    onClick: { action: 'clicked' }
+      control: {
+        type: 'boolean'
+      },
+      mapping: {
+        true: <Icon />,
+        false: null
+      }
+    }
+  }
+} satisfies Meta<typeof Button>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Contained: Story = {
+  args: {
+    children: 'Button',
+    variant: 'contained',
+    isDisabled: false,
+    isLoading: false,
+    themeColor: 'primary'
   }
 };
 
-export default meta;
-
-// 创建模板
-const Template: StoryFn<ButtonProps> = (args) => (
-  <ThemeProvider theme={defaultTheme}>
-    <Button {...args} />
-  </ThemeProvider>
-);
-
-// 定义故事
-export const Default = Template.bind({});
-Default.args = {
-  children: 'Button',
-  variant: 'contained',
-  isDisabled: false,
-  isLoading: false,
-  themeColor: 'primary'
+export const Outlined: Story = {
+  args: {
+    children: 'Button',
+    variant: 'outlined',
+    isDisabled: false,
+    isLoading: false,
+    themeColor: 'primary'
+  }
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  ...Default.args,
-  isDisabled: true
-};
-
-export const Loading = Template.bind({});
-Loading.args = {
-  ...Default.args,
-  isLoading: true
-};
-
-export const WithStartIcon = Template.bind({});
-WithStartIcon.args = {
-  ...Default.args,
-  startIcon: <span>🚀</span>
-};
-
-export const WithEndIcon = Template.bind({});
-WithEndIcon.args = {
-  ...Default.args,
-  endIcon: <span>🎉</span>
-};
-
-export const Outlined = Template.bind({});
-Outlined.args = {
-  ...Default.args,
-  variant: 'outlined'
-};
-
-export const Text = Template.bind({});
-Text.args = {
-  ...Default.args,
-  variant: 'text'
+export const Text: Story = {
+  args: {
+    children: 'Button',
+    variant: 'text',
+    isDisabled: false,
+    isLoading: false,
+    themeColor: 'primary'
+  }
 };

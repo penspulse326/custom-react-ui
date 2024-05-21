@@ -38,6 +38,9 @@ export const StyledButton = styled.button<Props>`
   border: none;
   border-radius: 4px;
   outline: none;
+  box-sizing: border-box;
+
+  font-size: 16px;
 
   cursor: 'pointer';
 
