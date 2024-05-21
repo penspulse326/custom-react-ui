@@ -51,7 +51,7 @@ export const StyledButton = styled.button<Props>`
   }
 
   &:active {
-    filter: brightness(0.8);
+    filter: opacity(0.8);
   }
 
   // disabled

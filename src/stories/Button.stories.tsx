@@ -4,17 +4,26 @@ import Button from '../components/Button';
 import Icon from './assets/Icon';
 
 const meta = {
-  title: '輸入元件/Button',
+  title: 'Inputs/Button',
   component: Button,
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered'
   },
-  tags: ['autodocs'],
-  args: { onClick: fn() },
+  args: {
+    children: 'Button',
+    isDisabled: false,
+    isLoading: false,
+    themeColor: 'primary',
+    onClick: fn()
+  },
   argTypes: {
+    variant: {
+      control: { type: 'radio' },
+      options: ['contained', 'outlined', 'text']
+    },
     themeColor: {
-      control: 'color',
-      options: ['primary', 'warning', 'disable']
+      control: 'color'
     },
     startIcon: {
       control: {
@@ -52,30 +61,28 @@ type Story = StoryObj<typeof meta>;
 
 export const Contained: Story = {
   args: {
-    children: 'Button',
-    variant: 'contained',
-    isDisabled: false,
-    isLoading: false,
-    themeColor: 'primary'
+    variant: 'contained'
   }
 };
 
 export const Outlined: Story = {
   args: {
-    children: 'Button',
-    variant: 'outlined',
-    isDisabled: false,
-    isLoading: false,
-    themeColor: 'primary'
+    variant: 'outlined'
   }
 };
 
 export const Text: Story = {
   args: {
-    children: 'Button',
-    variant: 'text',
-    isDisabled: false,
-    isLoading: false,
-    themeColor: 'primary'
+    variant: 'text'
+  }
+};
+
+export const Custom: Story = {
+  args: {
+    variant: 'contained',
+    style: {
+      background: 'linear-gradient(0deg, #16309b 30%, #16a8e2 90%)',
+      borderRadius: 50
+    }
   }
 };
