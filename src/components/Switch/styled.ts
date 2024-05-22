@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 
 interface Props {
-  $width?: number;
+  $switchWidth: number;
+  $labelWidth?: number;
+  $thumbSize?: number;
   $isChecked: boolean;
 }
 
@@ -11,7 +13,7 @@ export const Label = styled.div<Props>`
   display: flex;
   justify-content: center;
 
-  margin: 0 0.25em;
+  padding: 0 ${({ $thumbSize }) => $thumbSize! / 4}px;
 
   color: aliceblue;
   white-space: nowrap;
@@ -19,18 +21,18 @@ export const Label = styled.div<Props>`
   transition: 0.2s;
 
   // checked 狀態動畫
-  ${({ $isChecked }) =>
+  ${({ $isChecked, $switchWidth, $labelWidth }) =>
     $isChecked &&
     css`
-      transform: translateX(-1.25em);
+      transform: translateX(-${$switchWidth! - $labelWidth!}px);
     `}
 `;
 
 export const Thumb = styled.div<Props>`
   position: relative;
 
-  width: 1.25em;
-  height: 1.25em;
+  width: ${({ $thumbSize }) => $thumbSize}px;
+  height: ${({ $thumbSize }) => $thumbSize}px;
   aspect-ratio: 1;
   border-radius: 9999px;
 
@@ -38,26 +40,29 @@ export const Thumb = styled.div<Props>`
 
   transition: 0.2s;
 
-  // 位移量是 label 實際寬度 $width 再加上 label 的 margin-x
-  ${({ $isChecked, $width }) =>
+  ${({ $isChecked, $labelWidth }) =>
     $isChecked &&
     css`
-      transform: translateX(calc(${$width}px + 0.5em));
+      transform: translateX(${$labelWidth}px);
     `}
 `;
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<Props>`
   // base styles
   position: relative;
 
   display: flex;
   align-items: center;
 
-  padding: 0.25em;
-  border: none;
+  padding: 0;
+  width: ${({ $switchWidth }) => $switchWidth}px;
+  height: ${({ $thumbSize }) => $thumbSize}px;
+  border: 4px solid black;
   border-radius: 9999px;
   outline: none;
+  box-sizing: content-box;
 
   background-color: black;
+
   cursor: pointer;
 `;

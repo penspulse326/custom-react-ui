@@ -5,7 +5,7 @@ import Switch from './components/Switch';
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Switch fontSize={80} />
+      <Switch unCheckedLabel="ON" checkedLabel="OFFFFFFF" />
     </ThemeProvider>
   );
 }
