@@ -9,7 +9,7 @@ const Switch = () => {
   return (
     <StyledButton type="button" onClick={() => setChecked(!checked)}>
       <Thumb $isChecked={checked} />
-      <Label $isChecked={checked}>開關</Label>
+      <Label $isChecked={checked}></Label>
     </StyledButton>
   );
 };

@@ -27,6 +27,12 @@ export const Thumb = styled.div<Props>`
   background-color: #fff;
 
   transition: 0.2s;
+
+  ${({ $isChecked }) =>
+    $isChecked &&
+    css`
+      transform: translateX(1.2em);
+    `}
 `;
 
 export const StyledButton = styled.button`
@@ -37,6 +43,7 @@ export const StyledButton = styled.button`
   align-items: center;
 
   padding: 4px;
+  width: 40px;
   border: none;
   border-radius: 9999px;
   outline: none;
