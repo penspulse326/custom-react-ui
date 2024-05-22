@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 interface Props {
-  $isChecked: boolean;
   $width?: number;
+  $isChecked: boolean;
 }
 
 export const Label = styled.div<Props>`
@@ -18,6 +18,7 @@ export const Label = styled.div<Props>`
 
   transition: 0.2s;
 
+  // checked 狀態動畫
   ${({ $isChecked }) =>
     $isChecked &&
     css`
@@ -58,6 +59,5 @@ export const StyledButton = styled.button`
   outline: none;
 
   background-color: black;
-
   cursor: pointer;
 `;
