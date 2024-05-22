@@ -1,17 +1,23 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { StyledButton, Label, Thumb } from './styled';
 
-export interface SwitchProps {}
+export interface SwitchProps {
+  isChecked?: boolean;
+}
 
-const Switch = () => {
-  const [checked, setChecked] = useState(false);
+function Switch({ isChecked = false, ...props }: SwitchProps) {
+  const [checked, setChecked] = useState(isChecked);
+  const labelRef = useRef<HTMLDivElement>(null);
+  const width = labelRef.current?.offsetWidth;
 
   return (
     <StyledButton type="button" onClick={() => setChecked(!checked)}>
-      <Thumb $isChecked={checked} />
-      <Label $isChecked={checked}></Label>
+      <Thumb $isChecked={checked} $width={width} />
+      <Label ref={labelRef} $isChecked={checked} $width={width}>
+        開關開關
+      </Label>
     </StyledButton>
   );
-};
+}
 
 export default Switch;

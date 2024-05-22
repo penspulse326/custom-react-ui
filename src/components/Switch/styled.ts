@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   $isChecked: boolean;
+  $width?: number;
 }
 
 export const Label = styled.div<Props>`
@@ -10,17 +11,25 @@ export const Label = styled.div<Props>`
   display: flex;
   justify-content: center;
 
+  margin: 0 0.25em;
+
   color: aliceblue;
-  line-height: 1.2;
+  white-space: nowrap;
 
   transition: 0.2s;
+
+  ${({ $isChecked }) =>
+    $isChecked &&
+    css`
+      transform: translateX(-1.25em);
+    `}
 `;
 
 export const Thumb = styled.div<Props>`
   position: relative;
 
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.25em;
+  height: 1.25em;
   aspect-ratio: 1;
   border-radius: 9999px;
 
@@ -28,10 +37,11 @@ export const Thumb = styled.div<Props>`
 
   transition: 0.2s;
 
-  ${({ $isChecked }) =>
+  // 位移量是 label 實際寬度 $width 再加上 label 的 margin-x
+  ${({ $isChecked, $width }) =>
     $isChecked &&
     css`
-      transform: translateX(1.2em);
+      transform: translateX(calc(${$width}px + 0.5em));
     `}
 `;
 
@@ -42,8 +52,7 @@ export const StyledButton = styled.button`
   display: flex;
   align-items: center;
 
-  padding: 4px;
-  width: 40px;
+  padding: 0.25em;
   border: none;
   border-radius: 9999px;
   outline: none;
