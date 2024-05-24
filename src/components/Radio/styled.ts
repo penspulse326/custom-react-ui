@@ -26,6 +26,13 @@ const StyledRadio = styled.div<Props>`
   div {
     border: 2px solid ${({ $radioColor }) => $radioColor};
   }
+
+  &:hover {
+    span {
+      font-weight: 700;
+      transform: scale(1.1);
+    }
+  }
 `;
 
 const RadioIcon = styled.div`
