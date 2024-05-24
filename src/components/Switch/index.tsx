@@ -4,6 +4,7 @@ import { useColor } from '../../hooks/useColor';
 
 export interface SwitchProps {
   isChecked: boolean;
+  isDisabled?: boolean;
   unCheckedLabel?: string;
   checkedLabel?: string;
   themeColor?: string;
@@ -12,6 +13,7 @@ export interface SwitchProps {
 
 function Switch({
   isChecked = false,
+  isDisabled = false,
   unCheckedLabel,
   checkedLabel,
   themeColor = 'primary',
@@ -22,10 +24,10 @@ function Switch({
   const thumbSize = 18;
   const switchWidth = labelWidth + thumbSize;
   const { getColor } = useColor();
-  const switchColor = getColor(themeColor, isChecked);
+  const switchColor = getColor(themeColor, isDisabled);
 
   // 計算 label 的寬度，不傳入任何文字的狀況下最小寬度 thumbSize * 1.2
-  // 依賴項為 labelRef 偵測到的寬度 offsetWidth 與 isChecked 狀態
+  // 依賴項為 labelRef 偵測到的寬度 clientWidth 與 isChecked 狀態
   useLayoutEffect(() => {
     const minLabelWidth = thumbSize * 1.2;
     const currentLabelWidth = labelRef.current?.clientWidth ?? minLabelWidth;
@@ -42,10 +44,13 @@ function Switch({
     $isChecked: isChecked
   };
 
-  console.log('re-render');
-
   return (
-    <StyledButton type="button" onClick={onChange} {...styledProps}>
+    <StyledButton
+      type="button"
+      disabled={isDisabled}
+      onClick={onChange}
+      {...styledProps}
+    >
       <Thumb {...styledProps} />
       <Label ref={labelRef} {...styledProps}>
         {isChecked ? checkedLabel : unCheckedLabel}

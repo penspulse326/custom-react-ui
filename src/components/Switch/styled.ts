@@ -64,5 +64,5 @@ export const StyledButton = styled.button<Props>`
 
   background-color: ${({ $switchColor }) => $switchColor};
 
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
