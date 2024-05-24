@@ -1,14 +1,26 @@
+import { useColor } from '../../hooks/useColor';
 import { RadioIcon, StyledRadio } from './styled';
 
 interface RadioProps {
   children: React.ReactNode;
   value: string;
   isChecked: boolean;
+  isDisabled?: boolean;
+  themeColor?: string;
 }
 
-const Radio = ({ children, value, isChecked }: RadioProps) => {
+const Radio = ({
+  children,
+  value,
+  isChecked,
+  isDisabled = false,
+  themeColor = 'primary'
+}: RadioProps) => {
+  const { getColor } = useColor();
+  const radioColor = getColor(themeColor, isDisabled);
+
   return (
-    <StyledRadio>
+    <StyledRadio $isDisabled={isDisabled} $radioColor={radioColor}>
       {isChecked ? (
         <RadioIcon className="radio__checked-icon" />
       ) : (
