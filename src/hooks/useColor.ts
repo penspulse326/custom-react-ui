@@ -28,5 +28,3 @@ export const useColor = () => {
 
   return { getColor };
 };
-
-export default { useColor };
