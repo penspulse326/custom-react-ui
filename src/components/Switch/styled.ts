@@ -4,6 +4,7 @@ interface Props {
   $switchWidth: number;
   $switchColor: string;
   $labelWidth: number;
+  $fontSize: number;
   $thumbSize: number;
   $isChecked: boolean;
 }
@@ -17,6 +18,7 @@ export const Label = styled.div<Props>`
   padding: 0 ${({ $thumbSize }) => $thumbSize! / 4}px;
 
   color: aliceblue;
+  font-size: ${({ $fontSize }) => $fontSize}px;
   white-space: nowrap;
 
   transition: 0.2s;

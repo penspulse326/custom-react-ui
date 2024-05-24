@@ -2,12 +2,13 @@ import { useState, useRef, useLayoutEffect } from 'react';
 import { StyledButton, Label, Thumb } from './styled';
 import { useColor } from '../../hooks/useColor';
 
-export interface SwitchProps {
+interface SwitchProps {
   isChecked: boolean;
   isDisabled?: boolean;
   unCheckedLabel?: string;
   checkedLabel?: string;
   themeColor?: string;
+  size?: number;
   onChange: () => void;
 }
 
@@ -17,11 +18,12 @@ function Switch({
   unCheckedLabel,
   checkedLabel,
   themeColor = 'primary',
+  size = 14,
   onChange
 }: SwitchProps) {
   const [labelWidth, setLabelWidth] = useState(0);
   const labelRef = useRef<HTMLDivElement>(null);
-  const thumbSize = 18;
+  const thumbSize = size * 1.2;
   const switchWidth = labelWidth + thumbSize;
   const { getColor } = useColor();
   const switchColor = getColor(themeColor, isDisabled);
@@ -33,13 +35,14 @@ function Switch({
     const currentLabelWidth = labelRef.current?.clientWidth ?? minLabelWidth;
 
     setLabelWidth(currentLabelWidth);
-  }, [labelRef.current?.clientWidth, isChecked]);
+  }, [labelRef.current?.clientWidth, isChecked, size]);
 
   // 打包 props
   const styledProps = {
     $switchWidth: switchWidth,
     $switchColor: switchColor,
     $labelWidth: labelWidth,
+    $fontSize: size,
     $thumbSize: thumbSize,
     $isChecked: isChecked
   };

@@ -1,7 +1,7 @@
 import { useColor } from '../../hooks/useColor';
 import { StyledButton, Loader } from './styled';
 
-export interface ButtonProps {
+interface ButtonProps {
   /**
    * 文字內容
    */
@@ -63,11 +63,11 @@ function Button({
 
   return (
     <StyledButton
+      {...props}
       type="button"
       disabled={isLoading || isDisabled}
       $variant={variant}
       $color={btnColor}
-      {...props}
     >
       {isLoading && <Loader $variant={variant} $color={btnColor} />}
       {startIcon}

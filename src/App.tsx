@@ -8,12 +8,7 @@ function App() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Switch
-        isChecked={isChecked}
-        unCheckedLabel="ON"
-        checkedLabel="OFFFFFFF"
-        onChange={() => setIsChecked(!isChecked)}
-      />
+      <Switch isChecked={isChecked} onChange={() => setIsChecked(!isChecked)} />
     </ThemeProvider>
   );
 }
