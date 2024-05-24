@@ -9,7 +9,7 @@ interface Props {
   $isChecked: boolean;
 }
 
-export const Label = styled.div<Props>`
+const Label = styled.div<Props>`
   position: relative;
 
   display: flex;
@@ -31,7 +31,7 @@ export const Label = styled.div<Props>`
     `}
 `;
 
-export const Thumb = styled.div<Props>`
+const Thumb = styled.div<Props>`
   position: relative;
 
   width: ${({ $thumbSize }) => $thumbSize}px;
@@ -49,7 +49,7 @@ export const Thumb = styled.div<Props>`
     `}
 `;
 
-export const StyledButton = styled.button<Props>`
+const StyledButton = styled.button<Props>`
   // base styles
   position: relative;
 
@@ -68,3 +68,5 @@ export const StyledButton = styled.button<Props>`
 
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
+
+export { Label, Thumb, StyledButton };

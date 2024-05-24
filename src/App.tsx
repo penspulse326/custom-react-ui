@@ -1,14 +1,18 @@
 import { ThemeProvider } from 'styled-components';
 import { useState } from 'react';
 import defaultTheme from './theme';
-import Switch from './components/Switch';
+import Radio from './components/Radio';
 
 function App() {
   const [isChecked, setIsChecked] = useState(false);
-
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Switch isChecked={isChecked} onChange={() => setIsChecked(!isChecked)} />
+      <button type="button" onClick={() => setIsChecked(!isChecked)}>
+        button
+      </button>
+      <Radio value="選項" isChecked={isChecked}>
+        選項
+      </Radio>
     </ThemeProvider>
   );
 }

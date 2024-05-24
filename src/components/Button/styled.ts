@@ -27,7 +27,7 @@ const variants = {
   text: textStyle
 };
 
-export const StyledButton = styled.button<Props>`
+const StyledButton = styled.button<Props>`
   // base styles
   display: flex;
   justify-content: center;
@@ -68,7 +68,7 @@ export const StyledButton = styled.button<Props>`
   ${({ $variant }) => variants[$variant] || variants.contained}
 `;
 
-export const Loader = styled.span<Props>`
+const Loader = styled.span<Props>`
   --color: ${({ $variant, $color }) =>
     $variant === 'contained' ? 'white' : $color};
   --bg: no-repeat radial-gradient(farthest-side, var(--color) 92%, #0000);
@@ -91,3 +91,5 @@ export const Loader = styled.span<Props>`
     }
   }
 `;
+
+export { StyledButton, Loader };
