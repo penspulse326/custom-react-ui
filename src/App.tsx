@@ -10,7 +10,7 @@ function App() {
       <button type="button" onClick={() => setIsChecked(!isChecked)}>
         button
       </button>
-      <Radio value="選項" isChecked={isChecked} isDisabled>
+      <Radio value="選項" isChecked={isChecked}>
         選項
       </Radio>
     </ThemeProvider>

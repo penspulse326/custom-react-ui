@@ -20,7 +20,7 @@ const Radio = ({
   const radioColor = getColor(themeColor, isDisabled);
 
   return (
-    <StyledRadio $isDisabled={isDisabled} $radioColor={radioColor}>
+    <StyledRadio $isChecked $isDisabled={isDisabled} $radioColor={radioColor}>
       {isChecked ? (
         <RadioIcon className="radio__checked-icon" />
       ) : (

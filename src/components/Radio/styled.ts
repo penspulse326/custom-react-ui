@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface Props {
   $radioColor: string;
+  $isChecked: boolean;
   $isDisabled: boolean;
 }
 
@@ -9,9 +10,6 @@ const StyledRadio = styled.div<Props>`
   display: flex;
   align-items: center;
   gap: 8px;
-
-  color: ${({ $isDisabled, $radioColor }) =>
-    $isDisabled ? $radioColor : 'black'};
 
   cursor: ${({ $isDisabled }) => ($isDisabled ? 'not-allowed' : 'pointer')};
 
@@ -24,14 +22,22 @@ const StyledRadio = styled.div<Props>`
   }
 
   div {
-    border: 2px solid ${({ $radioColor }) => $radioColor};
+    border: 2px solid
+      ${({ $isChecked, $radioColor }) => ($isChecked ? $radioColor : 'black')};
   }
 
-  &:hover {
-    span {
-      font-weight: 700;
-      transform: scale(1.1);
-    }
+  span {
+    color: ${({ $isChecked, $radioColor }) =>
+      $isChecked ? $radioColor : 'black'};
+
+    ${({ $isDisabled }) =>
+      !$isDisabled &&
+      css`
+        &:hover {
+          font-weight: 700;
+          transform: scale(1.1);
+        }
+      `}
   }
 `;
 
