@@ -1,5 +1,6 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 import { StyledButton, Label, Thumb } from './styled';
+import { useColor } from '../../hooks/useColor';
 
 export interface SwitchProps {
   isChecked?: boolean;
@@ -17,6 +18,8 @@ function Switch({
   const labelRef = useRef<HTMLDivElement>(null);
   const thumbSize = 18;
   const switchWidth = labelWidth + thumbSize;
+  const { getColor } = useColor();
+  const switchColor = getColor('primary', checked);
 
   // 計算 label 的寬度，不傳入任何文字的狀況下最小寬度 thumbSize * 1.2，
   useLayoutEffect(() => {
@@ -31,6 +34,7 @@ function Switch({
   // 打包 props
   const styledProps = {
     $switchWidth: switchWidth,
+    $switchColor: switchColor,
     $labelWidth: labelWidth,
     $thumbSize: thumbSize,
     $isChecked: checked

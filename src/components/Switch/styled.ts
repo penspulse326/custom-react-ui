@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   $switchWidth: number;
+  $switchColor?: string;
   $labelWidth?: number;
   $thumbSize?: number;
   $isChecked: boolean;
@@ -57,12 +58,12 @@ export const StyledButton = styled.button<Props>`
   padding: 0;
   width: ${({ $switchWidth }) => $switchWidth}px;
   height: ${({ $thumbSize }) => $thumbSize}px;
-  border: 4px solid black;
+  border: 4px solid ${({ $switchColor }) => $switchColor};
   border-radius: 9999px;
   outline: none;
   box-sizing: content-box;
 
-  background-color: black;
+  background-color: ${({ $switchColor }) => $switchColor};
 
   cursor: pointer;
 `;
