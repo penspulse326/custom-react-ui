@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   $switchWidth: number;
-  $switchColor?: string;
-  $labelWidth?: number;
-  $thumbSize?: number;
+  $switchColor: string;
+  $labelWidth: number;
+  $thumbSize: number;
   $isChecked: boolean;
 }
 
@@ -34,7 +34,6 @@ export const Thumb = styled.div<Props>`
 
   width: ${({ $thumbSize }) => $thumbSize}px;
   height: ${({ $thumbSize }) => $thumbSize}px;
-  aspect-ratio: 1;
   border-radius: 9999px;
 
   background-color: #fff;

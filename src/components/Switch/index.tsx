@@ -3,33 +3,35 @@ import { StyledButton, Label, Thumb } from './styled';
 import { useColor } from '../../hooks/useColor';
 
 export interface SwitchProps {
-  isChecked?: boolean;
+  isChecked: boolean;
   unCheckedLabel?: string;
   checkedLabel?: string;
+  themeColor?: string;
+  onChange: () => void;
 }
 
 function Switch({
   isChecked = false,
   unCheckedLabel,
-  checkedLabel
+  checkedLabel,
+  themeColor = 'primary',
+  onChange
 }: SwitchProps) {
-  const [checked, setChecked] = useState(isChecked);
   const [labelWidth, setLabelWidth] = useState(0);
   const labelRef = useRef<HTMLDivElement>(null);
   const thumbSize = 18;
   const switchWidth = labelWidth + thumbSize;
   const { getColor } = useColor();
-  const switchColor = getColor('primary', checked);
+  const switchColor = getColor(themeColor, isChecked);
 
-  // 計算 label 的寬度，不傳入任何文字的狀況下最小寬度 thumbSize * 1.2，
+  // 計算 label 的寬度，不傳入任何文字的狀況下最小寬度 thumbSize * 1.2
+  // 依賴項為 labelRef 偵測到的寬度 offsetWidth 與 isChecked 狀態
   useLayoutEffect(() => {
     const minLabelWidth = thumbSize * 1.2;
-    const currentLabelWidth = labelRef.current?.offsetWidth ?? 0;
-    const width =
-      currentLabelWidth > minLabelWidth ? currentLabelWidth : minLabelWidth;
+    const currentLabelWidth = labelRef.current?.clientWidth ?? minLabelWidth;
 
-    setLabelWidth(width);
-  }, [labelRef.current?.offsetWidth, checked]);
+    setLabelWidth(currentLabelWidth);
+  }, [labelRef.current?.clientWidth, isChecked]);
 
   // 打包 props
   const styledProps = {
@@ -37,18 +39,16 @@ function Switch({
     $switchColor: switchColor,
     $labelWidth: labelWidth,
     $thumbSize: thumbSize,
-    $isChecked: checked
+    $isChecked: isChecked
   };
 
+  console.log('re-render');
+
   return (
-    <StyledButton
-      type="button"
-      onClick={() => setChecked(!checked)}
-      {...styledProps}
-    >
+    <StyledButton type="button" onClick={onChange} {...styledProps}>
       <Thumb {...styledProps} />
       <Label ref={labelRef} {...styledProps}>
-        {checked ? checkedLabel : unCheckedLabel}
+        {isChecked ? checkedLabel : unCheckedLabel}
       </Label>
     </StyledButton>
   );
